@@ -72,7 +72,7 @@ class JavascriptPiranha(FeatureCleanup):
 
         # Run the command using subprocess
         try:
-            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            result = subprocess.run(command, shell=False, capture_output=True, text=True)
             # Access the output
             diff = result.stdout
             print(diff)
