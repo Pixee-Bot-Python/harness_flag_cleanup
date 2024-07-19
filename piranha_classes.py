@@ -4,6 +4,7 @@ import toml
 
 from abc import ABC, abstractmethod
 from polyglot_piranha import execute_piranha, PiranhaArguments, Rule, RuleGraph, Filter
+from security import safe_command
 
 class FeatureCleanup(ABC):
     @abstractmethod
@@ -72,7 +73,7 @@ class JavascriptPiranha(FeatureCleanup):
 
         # Run the command using subprocess
         try:
-            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            result = safe_command.run(subprocess.run, command, shell=True, capture_output=True, text=True)
             # Access the output
             diff = result.stdout
             print(diff)
