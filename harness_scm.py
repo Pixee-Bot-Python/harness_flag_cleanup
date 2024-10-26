@@ -1,4 +1,5 @@
 import requests
+from security import safe_requests
 
 
 class HarnessSCM:
@@ -15,7 +16,7 @@ class HarnessSCM:
         headers = {
             'x-api-key': self.token
         }
-        response = requests.get(endpoint, headers=headers)
+        response = safe_requests.get(endpoint, headers=headers)
         if response.status_code == 200:
             return Repo(self.token, response.json())
         else:
