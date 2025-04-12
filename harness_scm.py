@@ -15,7 +15,7 @@ class HarnessSCM:
         headers = {
             'x-api-key': self.token
         }
-        response = requests.get(endpoint, headers=headers)
+        response = requests.get(endpoint, headers=headers, timeout=60)
         if response.status_code == 200:
             return Repo(self.token, response.json())
         else:
@@ -46,7 +46,7 @@ class Repo:
             "is_draft": False
         }
 
-        response = requests.post(endpoint, headers=headers, json=data)
+        response = requests.post(endpoint, headers=headers, json=data, timeout=60)
 
         if response.status_code == 201:
             print("Pull request created successfully!")

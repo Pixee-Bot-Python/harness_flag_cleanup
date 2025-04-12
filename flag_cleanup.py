@@ -33,7 +33,7 @@ def get_flag_data(api_key, base_url, account_id, org_identifier, project_identif
         base_url, account_id, project_identifier, account_id, org_identifier, environment_identifier)
     headers = {"x-api-key": api_key}
     try:
-        response = requests.get(url, params={}, headers=headers)
+        response = requests.get(url, params={}, headers=headers, timeout=60)
     except Exception as e:
         print(f"Error getting flag data: {e}")
         return {}
@@ -50,7 +50,7 @@ def get_env(api_key, base_url, account_id, org_identifier, project_identifier):
     url = f"https://{base_url}/gateway/cf/admin/environments?accountIdentifier={account_id}&orgIdentifier={org_identifier}&projectIdentifier={project_identifier}"
     headers = {"x-api-key": api_key}
     try:
-        response = requests.get(url, params={}, headers=headers)
+        response = requests.get(url, params={}, headers=headers, timeout=60)
     except Exception as e:
         print(f"Error getting environment: {e}")
         return env
